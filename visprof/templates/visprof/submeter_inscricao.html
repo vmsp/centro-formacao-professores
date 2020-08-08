@@ -1,0 +1,11 @@
+{% extends "visprof/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Inscrição em "{{ accao.designacao }}"{% endblock %}
+
+{% block content %}
+  <main role="main" class="container">
+    {% crispy form %}
+  </main>
+{% endblock %}

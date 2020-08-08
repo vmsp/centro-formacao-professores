@@ -1,0 +1,12 @@
+authlib
+django
+django-crispy-forms
+django-environ
+django-sesame
+django-tables2
+gunicorn
+loginpass
+mysqlclient
+wheel
+whitenoise
+django_compressor

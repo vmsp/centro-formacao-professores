@@ -1,0 +1,24 @@
+{% extends "visprof/base.html" %}
+
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+
+{% block title %}Pré-inscrições em "{{ accao.designacao }}"{% endblock %}
+
+{% block content %}
+  <main role="main" class="container">
+    <h4 class="my-3">Pré-inscrições em "{{ accao.designacao }}"</h4>
+    <div class="d-flex">
+      <div class="mr-auto">
+        <p>Seleccione os docentes a participar na acção de formação.</p>
+      </div>
+      <p><span id="total_seleccionadas">{{ total_seleccionadas }}</span> seleccionadas</p>
+    </div>
+    {% render_table table %}
+    <div class="row justify-content-end">
+      <div class="col-sm-6">
+        {% crispy form %}
+      </div>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,16 @@
+Caro responsável {{ is_agrupamento|yesno:"do,da" }} {{ escola.nome }},
+
+Docentes {{ is_agrupamento|yesno:"do seu agrupamento,da sua escola" }} inscreveram-se na acção de formação "{{ accao.designacao }}".
+
+Confirme a informação por eles inserida na plataforma através do endereço:
+
+{{ url }}
+
+Não partilhe este link com pessoal estranho à secretaria ou direcção.
+
+Ignore este email se já confirmou a inscrição dos docentes {{ is_agrupamento|yesno:"do seu agrupamento,da sua escola" }}.
+
+Cumprimentos,
+VisProf
+
+EMAIL ENVIADO DE FORMA AUTOMÁTICA, NÃO RESPONDA.

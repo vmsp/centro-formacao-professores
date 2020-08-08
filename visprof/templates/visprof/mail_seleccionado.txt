@@ -1,0 +1,12 @@
+Caro {{ docente.nome_completo }},
+
+Foi seleccionado para participar na acção de formação "{{ accao.designacao }}".
+
+Complete a sua inscrição, até {{ accao.expiracao_inscricoes }}, acedendo ao seguinte endereço:
+
+{{ url }}
+
+Cumprimentos,
+VisProf
+
+EMAIL ENVIADO DE FORMA AUTOMÁTICA, NÃO RESPONDA.

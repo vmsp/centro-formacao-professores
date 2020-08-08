@@ -1,0 +1,17 @@
+{% extends "visprof/base.html" %}
+
+{% load render_table from django_tables2 %}
+
+{% block title %}Acções de formação{% endblock %}
+
+{% block content %}
+  <main role="main" class="container mt-3">
+    {% if perms.visprof.add_accao %}
+      <a class="btn btn-primary mb-3 float-right"
+         href="{% url "editar_accao" %}">
+        Nova acção
+      </a>
+    {% endif %}
+    {% render_table table %}
+  </main>
+{% endblock %}

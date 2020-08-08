@@ -1,0 +1,30 @@
+{% extends "visprof/base.html" %}
+
+{% load render_table from django_tables2 %}
+
+{% block title %}Inscrições em "{{ accao.designacao }}"{% endblock %}
+
+{% block content %}
+  <main role="main" class="container mt-3">
+    {% include "visprof/_messages.html" %}
+    <h4 class="my-3">Inscrições em "{{ accao.designacao }}"</h4>
+    {% render_table table %}
+    <section class="card">
+      <h6 class="card-header">Pedido de confirmação de dados</h6>
+      <div class="card-body">
+        <form method="post" class="d-flex align-items-center">
+          {% csrf_token %}
+          <div class="mr-5">
+            Os emails com os pedido de confirmação dos dados das inscrições
+            podem ser enviados aos agrupamentos/escolas mais do que uma vez.
+            <strong>{{ accao.emails_confirmacao_enviados }} emails de
+            confirmação enviados.</strong>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Enviar emails
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+{% endblock %}

@@ -1,0 +1,17 @@
+Copyright © 2020 Vitor Manuel de Sousa Pereira. Todos os direitos reservados.
+
+Todos os documentos presentes neste repositório são a propriedade de Vitor
+Manuel de Sousa Pereira (o "Autor"). São considerados confidenciais e
+proprietários.
+
+Nenhum dos documentos presentes neste repositório pode ser reproduzidos ou
+transmitido de qualquer forma, em todo ou em parte, sem a expressa permissão por
+escrito do autor.
+
+O SOFTWARE É DISPONIBILIZADO "NO ESTADO EM QUE SE ENCONTRA", SEM QUALQUER TIPO
+DE GARANTIA. O AUTOR RENUNCIA TODAS AS GARANTIAS, EXPRESSAS, IMPLÍCITAS OU
+ESTATUTÁRIAS, INCLUINDO, ENTRE OUTROS, AS GARANTIAS IMPLÍCITAS DE
+COMERCIALIZAÇÃO, ADEQUAÇÃO A UM FIM ESPECÍFICO, TÍTULO, NÃO INFRAÇÃO, QUE O
+SOFTWARE PODE SER EXECUTADO SEM INTERRUPÇÕES OU ERROS, OU GARANTIAS RESULTANTES
+DO CURSO DE COMÉRCIO OU CURSO DE USO. TODO O RISCO ASSOCIADO AO USO DO SOFTWARE
+É ASSUMIDO PELO UTILIZADOR DO SOFTWARE.

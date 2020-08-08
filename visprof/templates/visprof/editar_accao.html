@@ -1,0 +1,108 @@
+{% extends "visprof/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  {% if accao %}
+    {% if accao.designacao %}
+      "{{ accao.designacao }}"
+    {% else %}
+      Nova acção de formação
+    {% endif %}
+    ({{ accao.get_estado_display }})
+  {% else %}
+    Nova acção de formação
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <main role="main" class="container">
+    <h4 class="my-3">
+      {% if accao %}
+        {% if accao.designacao %}
+          "{{ accao.designacao }}"
+        {% endif %}
+        <span class="badge {% if accao.estado == "rascunho" %}badge-secondary{% else %}badge-primary{% endif %}">
+          {{ accao.get_estado_display }}
+        </span>
+      {% else %}
+        Nova acção de formação
+      {% endif %}
+    </h4>
+
+    {% crispy form %}
+
+    {# Diálogo "Confirmar publicar" #}
+    <div class="modal fade"
+         id="publicar-modal"
+         tabindex="-1"
+         aria-labelledby="publicar-modal-label"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="publicar-modal-label">Publicar</h5>
+            <button type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Tem a certeza de que pretende publicar esta acção de formação?
+          </div>
+          <div class="modal-footer">
+            <button type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal">
+              Cancelar
+            </button>
+            <button type="submit"
+                    class="btn btn-primary"
+                    form="accao_form"
+                    name="submit"
+                    value="Publicar">
+              Publicar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %}
+    {# Diálogo "Cancelar" #}
+    <div class="modal fade"
+         id="cancelar-modal"
+         tabindex="-1"
+         aria-labelledby="cancelar-modal-label"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cancelar-modal-label">Cancelar</h5>
+            <button type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Tem a certeza que pretende cancelar esta acção de formação?</p>
+            <p>
+              Ao cancelar, todos os pré-inscritos receberão um e-mail a anular a
+              sua pré-inscrição e esta vedada a novos interessados.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+  </main>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "visprof/base.html" %}
+
+{% block title %}{{ accao.designacao }}{% endblock %}
+
+{% block content %}
+  <main role="main" class="container mt-3">
+    {% include "visprof/_messages.html" %}
+    <div class="d-flex flex-wrap align-items-center mb-3">
+      <h4 class="mr-auto">{{ accao.designacao }}</h4>
+      <div>
+        {# TODO: Testar esta lógica. #}
+        {% if inscricao.estado == "nao_seleccionada" %}
+          <div class="border border-success rounded text-success p-1">
+            ✓ Pré-inscrito
+          </div>
+        {% elif inscricao.estado == "preenchida" %}
+          <div>
+            <span class="text-success mr-2">✓ Inscrito</span>
+            <a class="btn btn-primary"
+               href="{% url "submeter_inscricao" inscricao.pk %}">
+              Editar inscrição
+            </a>
+          </div>
+        {% elif perms.visprof.change_accao %}
+          {% if accao.estado == "rascunho" or accao.estado == "pre_inscricao" %}
+            <a class="btn btn-secondary"
+               href="{% url "editar_accao" accao.pk %}">
+              Editar
+            </a>
+          {% endif %}
+        {% elif agora >= accao.abertura_pre_inscricao and agora < accao.fecho_pre_inscricao %}
+          <a class="btn btn-primary"
+             href="{% url "nova_pre_inscricao" accao.pk %}"
+             role="button">
+            Pré-inscrever
+          </a>
+        {% elif agora < accao.abertura_pre_inscricao %}
+          Pré-inscrições a partir de {{ accao.abertura_pre_inscricao }}
+        {% elif agora >= accao.fecho_pre_inscricao %}
+          Pré-inscrições fechadas
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <dl class="row">
+          <dt class="col-md-3">Destinatários</dt>
+          <dd class="col-md-9">
+            <ul class="list-unstyled">
+              {% for destinatario in accao.get_destinarios_display %}
+                <li>{{ destinatario }}</li>
+              {% endfor %}
+            </ul>
+          </dd>
+          <dt class="col-md-3">Formador(a)</dt>
+          <dd class="col-md-9">{{ accao.nome_formador }}</dd>
+          <dt class="col-md-3">Número de horas</dt>
+          <dd class="col-md-9">{{ accao.numero_horas }}</dd>
+          <dt class="col-md-3">Acreditação</dt>
+          <dd class="col-md-9">{{ accao.acreditacao }}</dd>
+          <dt class="col-md-3">Local</dt>
+          <dd class="col-md-9">{{ accao.local }}</dd>
+          <dt class="col-md-3">Modalidade</dt>
+          <dd class="col-md-9">{{ accao.get_modalidade_display }}</dd>
+        </dl>
+      </div>
+      <section class="col-md">
+        <h5>Pré-inscrições</h5>
+        <ul class="list-group my-3">
+          <li class="list-group-item d-flex flex-column">
+            <small>Abertura</small>
+            {{ accao.abertura_pre_inscricao }}
+          </li>
+          <li class="list-group-item d-flex flex-column">
+            <small>Fecho</small>
+            {{ accao.fecho_pre_inscricao }}
+          </li>
+        </ul>
+        {% if perms.visprof.change_inscricao %}
+          <h5>Gestão</h5>
+          <section class="btn-group-vertical w-100" role="group">
+            <a class="btn btn-block {% if accao.estado == "pre_inscricao" %}btn-primary{% else %}btn-secondary disabled{% endif %}"
+               href="{% url "lista_pre_inscricoes" accao_id=accao.pk %}">
+              Pré-inscrições
+            </a>
+            <a class="btn btn-block {% if accao.estado == "inscricao" %}btn-primary{% else %}btn-secondary disabled{% endif %}"
+               href="{% url "lista_inscricoes" accao_id=accao.pk %}">
+              Inscrições
+            </a>
+          </section>
+        {% endif %}
+      </section>
+    </div>
+    <div class="text-hyphenate">
+      {{ accao.etc|safe }}
+    </div>
+  </main>
+{% endblock %}

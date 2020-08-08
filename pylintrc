@@ -1,0 +1,21 @@
+[MASTER]
+
+load-plugins=pylint_django
+
+[FORMAT]
+
+max-line-length=80
+
+[MESSAGES CONTROL]
+
+disable=
+  invalid-name,
+  missing-class-docstring,
+  missing-docstring,
+  missing-function-docstring,
+  missing-module-docstring,
+  no-self-use,
+  too-few-public-methods,
+  too-many-ancestors,
+  too-many-branches,
+  unused-argument,

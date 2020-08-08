@@ -1,0 +1,74 @@
+{% load compress %}
+
+<!doctype html>
+<html lang="pt-pt" class="h-100">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {% compress css %}
+    <link href="/static/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/django_tables2/bootstrap.css" rel="stylesheet">
+    <link href="/static/visprof/styles.css" rel="stylesheet">
+  {% endcompress %}
+
+  <title>{% block title %}{% endblock %} - VisProf</title>
+
+  <body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-sm navbar-light border-bottom">
+      <div class="container">
+        <span class="navbar-brand mb-0 h1">VisProf</span>
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Mostrar/ocultar navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            {% with request.resolver_match.view_name as view_name %}
+              <li class="nav-item {% if view_name == "lista_accoes" %}active{% endif %}">
+                <a class="nav-link"
+                   href="{% url "lista_accoes" %}">
+                  Acções de Formação
+                </a>
+              </li>
+            {% endwith %}
+          </ul>
+          {% if request.user.is_staff %}
+            <a class="nav-link" href="{% url "admin:index" %}">
+              Administração
+            </a>
+          {% endif %}
+          {% if user.is_authenticated %}
+            <a href="{% url "logout" %}">Logout</a>
+          {% else %}
+            <a href="{% url "login" %}?next={{ request.path }}">Login</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <section class="flex-shrink-0">
+      {% block content %}{% endblock %}
+    </section>
+
+    <footer class="container mt-auto pt-3">
+      <p class="float-right text-muted">
+        Copyright © {% now "Y" %} Vitor Pereira. Todos os direitos reservados.
+      </p>
+    </footer>
+
+    {% compress js %}
+      <script src="/static/ckeditor4/ckeditor.js"></script>
+      <script src="/static/jquery/dist/jquery.js"></script>
+      <script src="/static/popper.js/dist/umd/popper.js"></script>
+      <script src="/static/bootstrap/dist/js/bootstrap.js"></script>
+      <script src="/static/js-cookie/src/js.cookie.js"></script>
+      <script src="/static/visprof/app.js"></script>
+    {% endcompress %}
+  </body>
+</html>

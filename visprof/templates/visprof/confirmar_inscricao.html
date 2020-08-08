@@ -1,0 +1,36 @@
+{% extends "visprof/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Confirmar inscrição{% endblock %}
+
+{% block content %}
+  <main role="main" class="container mt-3" data-sesamify-links>
+    <div class="d-flex">
+      <a href="{% url "lista_confirmar_inscricoes" inscricao.accao.pk %}"
+         class="btn btn-light mr-auto">
+        Retroceder
+      </a>
+      {% if inscricao.estado == "confirmada" %}
+        <h4 class="d-inline">
+          <span class="badge badge-success">Confirmado</span>
+        </h4>
+      {% endif %}
+    </div>
+    {% if inscricao.estado != "confirmada" %}
+      <p class="lead">
+        Valide os dados inseridos pelo docente e clique Confirmar. Uma vez
+        confirmado, a informação não poderá ser alterada.
+      </p>
+    {% endif %}
+    {% crispy form %}
+    {% if inscricao.estado != "confirmada" %}
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success float-right">
+          Confirmar
+        </button>
+      </form>
+    {% endif %}
+  </main>
+{% endblock %}
