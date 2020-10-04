@@ -1,5 +1,5 @@
-import loginpass
 from authlib.integrations import django_client
+import loginpass
 
 
 # See https://github.com/authlib/loginpass/issues/65

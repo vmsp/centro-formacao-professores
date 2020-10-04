@@ -3,7 +3,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm
 from django.utils import html
 
-from visprof import core, models
+from visprof import core
+from visprof import models
 
 
 class UserCreationForm(BaseUserCreationForm):

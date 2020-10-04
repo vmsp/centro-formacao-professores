@@ -2,7 +2,8 @@ import datetime
 
 from django import test
 
-from visprof import forms, models
+from visprof import forms
+from visprof import models
 
 
 def preencher_formulario(

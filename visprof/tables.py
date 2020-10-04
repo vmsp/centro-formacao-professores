@@ -1,7 +1,8 @@
 import django_tables2 as tables
 from django_tables2 import RequestConfig  # pylint: disable=unused-import
 
-from visprof import core, models
+from visprof import core
+from visprof import models
 
 
 def _link_accao(record):

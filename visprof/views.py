@@ -1,11 +1,15 @@
 from django.conf import settings
-from django.contrib import auth, messages
+from django.contrib import auth
 from django.contrib.auth import views as auth_views
+from django.contrib import messages
 from django.core import mail
 from django.utils import timezone
 from sesame import utils as sesame
 
-from visprof import core, forms, models, tables
+from visprof import core
+from visprof import forms
+from visprof import models
+from visprof import tables
 
 
 class LoginView(auth_views.LoginView):

@@ -1,4 +1,5 @@
-from crispy_forms import layout, utils
+from crispy_forms import layout
+from crispy_forms import utils
 from django.utils import html as html_utils
 
 

@@ -4,3 +4,4 @@ git+https://github.com/kezabelle/django-shouty-templates.git@master
 pylint
 pylint-django
 yapf
+isort

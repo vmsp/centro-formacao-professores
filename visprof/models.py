@@ -1,7 +1,8 @@
 from django.contrib.auth import hashers
 from django.contrib.auth import models as auth_models
 from django.core import validators
-from django.db import models, transaction
+from django.db import models
+from django.db import transaction
 from django.urls import reverse
 from django.utils import timezone
 

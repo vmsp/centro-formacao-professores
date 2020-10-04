@@ -1,10 +1,16 @@
-from crispy_forms.helper import FormHelper, Layout
-from crispy_forms.layout import (Button, Column, Div, Field, Fieldset, Row,
-                                 Submit)
+from crispy_forms.helper import FormHelper
+from crispy_forms.helper import Layout
+from crispy_forms.layout import Button
+from crispy_forms.layout import Column
+from crispy_forms.layout import Div
+from crispy_forms.layout import Field
+from crispy_forms.layout import Fieldset
+from crispy_forms.layout import Row
+from crispy_forms.layout import Submit
 from django import forms
 
-from visprof import models
 from visprof.custom_layout import RadioWithOther
+from visprof import models
 
 
 class AccaoForm(forms.ModelForm):

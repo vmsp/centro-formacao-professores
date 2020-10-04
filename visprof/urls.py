@@ -1,10 +1,11 @@
-import loginpass
-from django import urls
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django import urls
 from django.views.generic import base as generic_views
+import loginpass
 
-from visprof import oauth, views
+from visprof import oauth
+from visprof import views
 
 urlpatterns = [
     urls.path('gestão/', admin.site.urls),
