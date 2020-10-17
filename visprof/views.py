@@ -23,7 +23,6 @@ def handle_authorize(request, remote, token, user_info):
     user = auth.authenticate(request,
                              email=user_info['email'],
                              access_token=token['access_token'])
-    print(user)
     if user is None:
         return core.HttpResponse(status=401)
     auth.login(request, user)
