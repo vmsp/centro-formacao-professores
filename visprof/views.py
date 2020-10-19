@@ -118,8 +118,6 @@ def lista_pre_inscricoes(request, accao_id):
         accao.expiracao_inscricoes = request.POST['expiracao']
         accao.estado = models.Accao.Estado.INSCRICAO
         accao.save()
-        # TODO(vitor): É importante este mail incluir a data de expiração para a
-        #   inscrição.
         mails = []
         for inscricao in inscricoes_seleccionadas:
             url = request.build_absolute_uri(
