@@ -111,8 +111,9 @@ def lista_pre_inscricoes(request, accao_id):
     table = tables.PreInscricaoTable(inscricoes)
     tables.RequestConfig(request, paginate={'per_page': 100}).configure(table)
     form = forms.EnviarInscricoesForm(
-        (request.POST if request.method == 'POST' else None))
-    if request.method == 'POST' and form.is_valid():
+        accao, (request.POST if request.method == 'POST' else None))
+    if (request.method == 'POST' and form.is_valid() and
+            accao.pre_inscricoes_abertas()):
         inscricoes_seleccionadas = inscricoes.filter(
             estado=models.Inscricao.Estado.SELECCIONADA)
         accao.expiracao_inscricoes = request.POST['expiracao']
@@ -140,6 +141,7 @@ def lista_pre_inscricoes(request, accao_id):
             'table': table,
             'form': form,
             'total_seleccionadas': total_seleccionadas,
+            'agora': timezone.now(),
         })
 
 

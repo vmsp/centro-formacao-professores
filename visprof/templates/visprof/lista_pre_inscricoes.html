@@ -15,10 +15,15 @@
       <p><span id="total_seleccionadas">{{ total_seleccionadas }}</span> seleccionadas</p>
     </div>
     {% render_table table %}
-    <div class="row justify-content-end">
-      <div class="col-sm-6">
-        {% crispy form %}
-      </div>
+    {% if agora <= accao.fecho_pre_inscricao %}
+      <p class="text-muted">
+        Poderá enviar os emails de inscrição aos docentes seleccionados após
+        o fecho das pré-inscrições. Este fecho ocorrerá a
+        {{ accao.fecho_pre_inscricao }}.
+      </p>
+    {% endif %}
+    <div class="d-flex justify-content-sm-end">
+      {% crispy form %}
     </div>
   </main>
 {% endblock %}

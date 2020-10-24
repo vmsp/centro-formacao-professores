@@ -193,19 +193,22 @@ class InscricaoForm(PreInscricaoForm):
 
 
 class EnviarInscricoesForm(forms.Form):
-    expiracao = forms.DateTimeField(
-        label='Data de expiração',
-        help_text=('Os docentes seleccionados não se poderão inscrever a '
-                   'partir desta data.'))
+    expiracao = forms.DateTimeField(label='Data de expiração')
+
+    def __init__(self, accao, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._accao = accao
 
     @property
     def helper(self):
         helper = FormHelper()
-        helper.label_class = 'col-sm-4 col-form-label'
-        helper.field_class = 'col-sm'
+        helper.form_class = 'form-inline'
         helper.layout = Layout(
             Field('expiracao',
                   placeholder='YYYY-MM-DD HH:MM',
-                  wrapper_class='row'),
-            Submit('submit', 'Enviar inscrições', css_class='float-right'))
+                  css_class='mx-sm-3',
+                  disabled=self._accao.pre_inscricoes_abertas()),
+            Submit('submit',
+                   'Enviar inscrições',
+                   disabled=self._accao.pre_inscricoes_abertas()))
         return helper
