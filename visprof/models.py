@@ -118,6 +118,7 @@ class Accao(models.Model):
     class Meta:
         verbose_name = 'acção de formação'
         verbose_name_plural = 'acções de formação'
+        ordering = ['-estado', '-abertura_pre_inscricao']
 
     def __str__(self):
         return self.designacao

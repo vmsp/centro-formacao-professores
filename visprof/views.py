@@ -37,7 +37,7 @@ def lista_accoes(request):
             estado__in=(models.Accao.Estado.PRE_INSCRICAO,
                         models.Accao.Estado.INSCRICAO,
                         models.Accao.Estado.TERMINADA))
-    table = tables.AccoesTable(accoes, order_by='-estado')
+    table = tables.AccoesTable(accoes)
     tables.RequestConfig(request, paginate={'per_page': 50}).configure(table)
     return core.render(request, 'visprof/lista_accoes.html', {'table': table})
 
