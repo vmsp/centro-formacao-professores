@@ -1,14 +1,14 @@
-from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django import urls
 from django.views.generic import base as generic_views
 import loginpass
 
+from visprof import admin
 from visprof import oauth
 from visprof import views
 
 urlpatterns = [
-    urls.path('gestão/', admin.site.urls),
+    urls.path('gestão/', admin.admin_site.urls),
     # Acção
     urls.path('',
               generic_views.RedirectView.as_view(pattern_name='lista_accoes',

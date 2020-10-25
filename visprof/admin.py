@@ -7,6 +7,12 @@ from visprof import core
 from visprof import models
 
 
+class AdminSite(admin.AdminSite):
+    site_header = 'Administração do VisProf'
+    site_title = 'Administração do VisProf'
+    index_title = 'Administração do VisProf'
+
+
 class UserCreationForm(BaseUserCreationForm):
 
     class Meta:
@@ -50,9 +56,11 @@ class InscricaoAdmin(admin.ModelAdmin):
     docente_link.short_description = 'Docente'
 
 
-admin.site.register(models.User, UserAdmin)
-admin.site.register(models.Accao)
-admin.site.register(models.Escola)
-admin.site.register(models.GrupoDeRecrutamento)
-admin.site.register(models.Docente)
-admin.site.register(models.Inscricao, InscricaoAdmin)
+admin_site = AdminSite()
+
+admin_site.register(models.User, UserAdmin)
+admin_site.register(models.Accao)
+admin_site.register(models.Escola)
+admin_site.register(models.GrupoDeRecrutamento)
+admin_site.register(models.Docente)
+admin_site.register(models.Inscricao, InscricaoAdmin)
