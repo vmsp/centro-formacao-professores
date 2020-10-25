@@ -50,7 +50,7 @@
             </button>
           </div>
           <div class="modal-body">
-            Tem a certeza de que pretende publicar esta acção de formação?
+            Tem a certeza de que pretende {% if not accao or accao.estado == "rascunho" %}publicar{% else %}editar{% endif %} esta acção de formação?
           </div>
           <div class="modal-footer">
             <button type="button"
@@ -63,7 +63,11 @@
                     form="accao_form"
                     name="submit"
                     value="Publicar">
-              Publicar
+              {% if not accao or accao.estado == "rascunho" %}
+                Publicar
+              {% else %}
+                Editar
+              {% endif %}
             </button>
           </div>
         </div>

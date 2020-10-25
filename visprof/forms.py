@@ -54,7 +54,8 @@ class AccaoForm(forms.ModelForm):
                  self.instance.estado == models.Accao.Estado.RASCUNHO else None
                 ),
                 Button('publicar',
-                       'Publicar',
+                       ('Publicar' if self.instance.estado
+                        == models.Accao.Estado.RASCUNHO else 'Editar'),
                        css_class='btn btn-primary ml-2',
                        data_toggle='modal',
                        data_target='#publicar-modal'),
