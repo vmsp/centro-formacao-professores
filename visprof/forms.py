@@ -202,13 +202,15 @@ class EnviarInscricoesForm(forms.Form):
 
     @property
     def helper(self):
+        if self._accao.pre_inscricoes_abertas():
+            self.fields['expiracao'].disabled = True
+
         helper = FormHelper()
         helper.form_class = 'form-inline'
         helper.layout = Layout(
             Field('expiracao',
                   placeholder='YYYY-MM-DD HH:MM',
-                  css_class='mx-sm-3',
-                  disabled=self._accao.pre_inscricoes_abertas()),
+                  css_class='mx-sm-3'),
             Submit('submit',
                    'Enviar inscrições',
                    disabled=self._accao.pre_inscricoes_abertas()))
